@@ -5,7 +5,7 @@ async function getDados() {
         }
     })
     const dados = await resposta.json()
-    console.log(dados)
+    return dados
 }
 
 getDados()
