@@ -1,4 +1,4 @@
-from fastapi import FastAPI #modulo que faz parte de uma biblioteca nesse caso dentro do py
+from fastapi import FastAPI, Request #modulo que faz parte de uma biblioteca nesse caso dentro do py
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI() # chama a classe que ja veio pronta 
 
@@ -26,5 +26,9 @@ async def home(): #"async" cria uma funcao assincrona (roda coisas paralelamente
 async def get_users(): #"async" cria uma funcao assincrona (roda coisas paralelamente e ao mesmo tempo)
     return lista_usuario
 
-
+@app.post("/users")
+async def add_user(request: Request):
+    user = request.json()
+    lista_usuario.append(user)
+    print(lista_usuario)
 

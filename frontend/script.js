@@ -1,19 +1,13 @@
 async function getDados() {
     const resposta = await fetch('http://localhost:8000/users', {
-        headers: {
-            method: 'GET'
-        }
+        method: 'GET'
     })
     const dados = await resposta.json()
     return dados
 }
 
 async function exibirDados() {
-    const listaUsuarios = [
-    {"username": "Corina", "email": "corina@rede.ulbra.br"}, 
-    {"username": "Negolas", "email": "negolas@rede.ulbra.br"},
-    {"username": "Levi", "email": "levi@rede.ulbra.br"},
-    ]
+    const listaUsuarios = await getDados()
 
     const ulUsuarios = document.getElementById("ulUsuarios")
     //percorrer a lista de usuarios
@@ -34,8 +28,21 @@ async function exibirDados() {
 
 exibirDados()
 
-function botaoLog() {
-    console.log("Click")
-    window.alert("Deu certo!")
+async function adicionarUsuario(evento) {
+    //obter os dados do HTML
+    //cria um obj com esses dados
+    //requisicao para add os dados no back
+    evento.preventDefault()
+    //tira o comportamento de atualizacao da pagina
+    const usernameUsuario  = document.getElementById("name").value
+    const emailUsuario  = document.getElementById("email").value
+    const novoUsuario = {
+        username: usernameUsuario,
+        email: emailUsuario
+    }
+    console.log(novoUsuario)
+    const resposta = await fetch('http://localhost:8000/users', {
+        method: 'POST',
+        body: JSON.stringify(novoUsuario)
+    })
 }
-
