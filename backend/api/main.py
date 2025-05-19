@@ -19,13 +19,12 @@ lista_usuario = [
 ]
 
 @app.get("/")
-
-
 async def home(): #"async" cria uma funcao assincrona (roda coisas paralelamente e ao mesmo tempo)
     return "rota home"
 
-@app.get("/users") # "@app" chamo a funcao dentro da classe definida no app o @ [e um decorator = executa ex:/oi e executa o que vem depois] ".get()" uma metodo que recebe um caminho, ele ja e uma funacao dentro do fastAPI
+@app.get("/users") # "@app" chamo a funcao dentro da classe definida no app o @ [e um decorator = executa ex:/oi e executa o que vem depois] ".get()" uma metodo que recebe um caminho, ele ja e uma funcao dentro do fastAPI
 async def get_users(): #"async" cria uma funcao assincrona (roda coisas paralelamente e ao mesmo tempo)
     return lista_usuario
+
 
 
